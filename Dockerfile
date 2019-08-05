@@ -34,6 +34,8 @@ RUN mkdir $T_SYSTEM_DIR
 # Retry to install the Python package dependencies in case of a failure
 RUN pip3 install --upgrade picamera>=1.13 RPi.GPIO>=0.6.5 tinydb==3.9.0.post1 numpy paho-mqtt>=1.4.0 face_recognition multipledispatch wireless netifaces psutil pyaccesspoint wifi flask schema gitpython elevate imutils gpiozero
 RUN pip3 install pytest-faulthandler
+RUN pip3 install --upgrade flake8 sphinx sphinx_rtd_theme recommonmark m2r pytest docutils
+
 # Print success message
 RUN echo -e "\n\T_System is successfully installed into the container.\n"
 
