@@ -19,13 +19,13 @@ script:
   # prepare qemu
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   # build image
-  - docker build --tag t_system/test -f test.Dockerfile
+  - docker build --tag test -f test.Dockerfile
   # push image
   - >
     if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         docker login -u="pi" -p="raspberry"
-        docker tag t_system/test
-        docker push t_system/test
+        docker tag test
+        docker push test
     fi
 notifications:
   on_success: change
