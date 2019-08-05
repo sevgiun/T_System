@@ -1,4 +1,5 @@
 sudo: required
+dist: xenial
 language: python
 env:
   global:
@@ -7,40 +8,22 @@ env:
     - ARCH=rpi
       GOIMG=resin/rpi-raspbian
       DOCKER_BUILD=mastermindg/docker-flow-proxy:rpi-${VERSION}
-      DOCKERFILE=Dockerfile
-#virtualenv:
-#    system_site_packages: true
+      DOCKERFILE=test.Dockerfile
 services:
   - xvfb # X virtual framebuffer. Run the graphical application without display them while also having the ability to take screenshots.
   - docker
-cache:
-  directories:
-    - /usr/share/t_system
-before_install:
+script:
   # prepare qemu
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   # build image
-  - docker build -t hypriot/rpi-raspbian .
-  # test image
-  - docker run hypriot/rpi-raspbian
+  - docker build --tag t_system_test -f test.Dockerfile
   # push image
   - >
     if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-      docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
-      docker tag hypriot/rpi-raspbian
-      docker push hypriot/rpi-raspbian
-      docker push hypriot/rpi-raspbian
+#      docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+#      docker tag hypriot/rpi-raspbian
+      docker push t_system_test
     fi
-install:
-  - sudo ./install-dev.sh --no-model
-  - sudo pip3 install pytest-faulthandler
-before_script:
-  # stop the build if there are Python syntax errors or undefined names
-  - flake8 . --count --select=E9,F63,F72,F82 --show-source --statistics
-  # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-  - flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-script:
-  - python3 -m pytest --capture=sys
 notifications:
   on_success: change
   on_failure: change  # `always` will be the setting once code changes slow down
