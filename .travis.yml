@@ -1,5 +1,5 @@
 sudo: required
-dist: xenial
+dist: bionic
 language: python
 env:
   global:
@@ -23,7 +23,7 @@ script:
   # push image
   - >
     if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-        docker tag test
+#        docker tag test
         docker push test
     fi
 notifications:
