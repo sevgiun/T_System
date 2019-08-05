@@ -20,7 +20,7 @@ cache:
 #    - mysql -u root -e "CREATE DATABASE ava;"
 install:
 #    - sudo ./install-dev.sh --no-model
-    - sudo pip3 install pytest-faulthandler
+#    - sudo pip3 install pytest-faulthandler
 before_script:
     # stop the build if there are Python syntax errors or undefined names
     - flake8 . --count --select=E9,F63,F72,F82 --show-source --statistics
