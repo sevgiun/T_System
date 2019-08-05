@@ -10,7 +10,7 @@ MAINTAINER Cem Baybars GÜÇLÜ "cem.byabars@gmail.com"
 RUN apt-get update
 RUN apt-get -qqy install python3 python3-all-dev libglib2.0-dev libcairo2-dev libgtk2.0-dev
 RUN apt-get -qqy install python3-minimal ${misc:Pre-Depends}
-RUN apt-get -qqy install ${python3:Depends} ${misc:Depends} flite python3-xlib portaudio19-dev python3-all-dev flac libnotify-bin python-egenix-mx-base-dev python3-lxml python3-pyaudio python3-httplib2 python3-pip libgstreamer1.0-dev gstreamer1.0-plugins-good gstreamer1.0-tools subversion libatlas-base-dev automake autoconf libtool
+RUN apt-get -qqy install ${python3:Depends} ${misc:Depends} flite python3-xlib portaudio19-dev python3-all-dev flac libnotify-bin python-egenix-mx-base-dev python3-lxml python3-pyaudio python3-httplib2 python3-pip python-flake8 libgstreamer1.0-dev gstreamer1.0-plugins-good gstreamer1.0-tools subversion libatlas-base-dev automake autoconf libtool
 RUN apt-get -qqy install dnsmasq hostapd
 
 # Set the working directory to /app
