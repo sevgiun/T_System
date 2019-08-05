@@ -19,7 +19,7 @@ cache:
 #before_install:
 #    - mysql -u root -e "CREATE DATABASE ava;"
 install:
-    - sudo ./install-dev.sh --no-model
+#    - sudo ./install-dev.sh --no-model
     - sudo pip3 install pytest-faulthandler
 before_script:
     # stop the build if there are Python syntax errors or undefined names
